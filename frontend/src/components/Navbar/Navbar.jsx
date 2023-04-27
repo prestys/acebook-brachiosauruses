@@ -16,9 +16,11 @@ const Navbar = ({ location }) => {
   const IsLoggedOut = () => {
     setTimeout(() => {
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("userID");
     }, 10000);
     if (isLoggedIn) {
       window.localStorage.removeItem("token");
+      window.localStorage.removeItem("userID");
     }
     navigate("/");
   };

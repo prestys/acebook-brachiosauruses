@@ -37,10 +37,11 @@ const Post = (props) => {
           <h4 className="post-timestamp">
             {moment(post.createdAt).calendar()}
           </h4>
+          <p data-cy="authorID">Author ID -- {createdBy}</p>
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
           {createdBy === currentUser ?
-          <h4 className="post-delete" onClick={Delete}>
+          <h4 className="post-delete" data-cy="delete" onClick={Delete}>
             Delete
           </h4>
           : null }

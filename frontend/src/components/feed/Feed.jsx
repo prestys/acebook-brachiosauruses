@@ -29,7 +29,7 @@ const Feed = ({ navigate }) => {
   if (token) {
     return (
       <section className="feed">
-        <h2 className="feed-header">Hi [], What's on your mind?</h2>
+        <h2 className="feed-header">Hi {userID}, What's on your mind?</h2>
         <RouteButton
           navigate={navigate}
           routePath={"/posts/new"}

@@ -30,7 +30,6 @@ const Post = (props) => {
   };
 
   const displayPost = (deletedPost) => {
-
     if (deletedPost === false)
       return (
         <div className="post-container">
@@ -40,7 +39,7 @@ const Post = (props) => {
           <p data-cy="authorID">Author ID -- {createdBy}</p>
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
-          {createdBy === currentUser ?
+          {createdBy == currentUser ?
           <h4 className="post-delete" data-cy="delete" onClick={Delete}>
             Delete
           </h4>

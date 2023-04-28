@@ -17,6 +17,8 @@ const LogInForm = ({ navigate }) => {
     })
 
     if(response.status !== 201) {
+      setEmail('')
+      setPassword('')
       navigate('/login')
     } else {
       let data = await response.json()

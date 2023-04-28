@@ -2,13 +2,12 @@ import "./App.css";
 import LandingPage from "../landing/LandingPage";
 import LoginForm from "../auth/LoginForm";
 import SignUpForm from "../user/SignUpForm";
-import UserProfile from "../userProfile/UserProfile";
-import FriendProfile from "../friendProfile/FriendProfile";
+import OtherUserProfile from "../OtherUserProfile/OtherUserProfile"
 import FriendList from "../friendList/FriendList";
 import Signout from "../signout/Signout";
 import Feed from "../feed/Feed";
 import NewPost from "../newPost/NewPost";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
 
@@ -34,11 +33,7 @@ const App = () => {
           <Route path="/posts/new" element={<NewPost navigate={navigate} />} />
           <Route
             path="/profile"
-            element={<UserProfile navigate={navigate} />}
-          />
-          <Route
-            path="/friend"
-            element={<FriendProfile navigate={navigate} />}
+            element={<OtherUserProfile navigate={navigate} />}
           />
           <Route
             path="/friend-list"

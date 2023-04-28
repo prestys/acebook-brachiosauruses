@@ -3,7 +3,7 @@ import styles from "./Post.css";
 const moment = require("moment");
 
 const Post = (props) => {
-  const { post, token, setToken, userID} = props;
+  const { post, token, setToken} = props;
   const [deletedPost, setDeletedPost] = useState(false);
   const currentUser = window.localStorage.getItem("userID");
   const createdBy = post.author.id

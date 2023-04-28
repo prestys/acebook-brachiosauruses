@@ -3,8 +3,12 @@ import styles from "./Post.css";
 const moment = require("moment");
 
 const Post = (props) => {
-  const { post, token, setToken } = props;
+  const { post, token, setToken, userID} = props;
   const [deletedPost, setDeletedPost] = useState(false);
+  const currentUser = window.localStorage.getItem("userID");
+  const createdBy = post.author.id
+
+
 
   const Delete = () => {
     if (token) {
@@ -32,11 +36,14 @@ const Post = (props) => {
           <h4 className="post-timestamp">
             {moment(post.createdAt).calendar()}
           </h4>
+          <p data-cy="authorID">Author ID -- {createdBy}</p>
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
-          <h4 className="post-delete" onClick={Delete}>
+          {createdBy == currentUser ?
+          <h4 className="post-delete" data-cy="delete" onClick={Delete}>
             Delete
           </h4>
+          : null }
         </div>
       );
     else
@@ -46,8 +53,8 @@ const Post = (props) => {
         </div>
       );
   };
-
   return (
+
     <article className="post" data-cy="post" key={post._id}>
       {displayPost(deletedPost)}
     </article>

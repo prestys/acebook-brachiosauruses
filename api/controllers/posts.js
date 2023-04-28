@@ -13,11 +13,12 @@ const PostsController = {
   },
   Create: (req, res) => {
     const post = new Post(req.body);
+    post.author.id = req.user_id
     post.save(async (err) => {
       if (err) {
         throw err;
       }
-
+      await post.populate("author.id").execPopulate();
       const token = await TokenGenerator.jsonwebtoken(req.user_id)
       res.status(201).json({ message: 'OK', token: token });
     });
@@ -33,7 +34,9 @@ const PostsController = {
       res.status(202).json({ message: 'Post deleted', token: token });
 
     })
-  }
+  },
+
+   
 
 };
 

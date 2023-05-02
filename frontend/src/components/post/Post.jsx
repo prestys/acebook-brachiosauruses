@@ -31,7 +31,7 @@ const Post = (props) => {
     }
   };
 
-  const fetchUserProfile = () => {
+  const fetchUserProfile = async () => {
     fetch(`/api/users/${createdBy}`, {
       headers: {
         "Content-Type": "application/json",
@@ -39,9 +39,13 @@ const Post = (props) => {
     })
       .then((response) => response.json())
       .then(async (data) => {
-        window.localStorage.setItem("userpassword", data.user.password)
-      });
-      navigate("/profile")
+        window.localStorage.setItem("username", data.user.name)
+        window.localStorage.setItem("image", data.user.imageURL)
+        window.localStorage.setItem("otherUserID", createdBy)
+      }).then((data)=>
+      {
+        navigate("/profile")});
+      
   }
 
   const displayPost = (deletedPost) => {
@@ -52,6 +56,7 @@ const Post = (props) => {
             {moment(post.createdAt).calendar()}
           </h4>
           <p onClick={fetchUserProfile} data-cy="authorID">Author ID -- {createdBy}</p>
+
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
           {createdBy == currentUser ?

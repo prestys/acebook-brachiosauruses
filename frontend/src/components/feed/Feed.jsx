@@ -52,7 +52,7 @@ const Feed = ({ navigate }) => {
       </section>
     );
   } else {
-    navigate("/signin");
+    navigate("/login");
   }
 };
 

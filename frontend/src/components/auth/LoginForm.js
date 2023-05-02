@@ -24,6 +24,9 @@ const LogInForm = ({ navigate }) => {
       let data = await response.json()
       window.localStorage.setItem("token", data.token,)
       window.localStorage.setItem("userID", data.userID,)
+      window.localStorage.setItem("userFriends", data.userFriends.join(','))
+
+
       navigate('/posts');
     }
   }

@@ -14,6 +14,10 @@ import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
 const App = () => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [userID, setUserID] = useState(window.localStorage.getItem("userID"))
+
   return (
     <>
       <section className="nav">

@@ -4,6 +4,7 @@ import RouteButton from "../routeButton/RouteButton";
 import styles from "./Feed.css"
 
 const Feed = ({ navigate }) => {
+
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [userID, setUserID] = useState(window.localStorage.getItem("userID"))

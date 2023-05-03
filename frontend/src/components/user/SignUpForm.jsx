@@ -13,6 +13,7 @@ const SignUpForm = ({ navigate }) => {
   const [password, setPassword] = useState("");
   const [popout, setPopout] = useState(false);
 
+
   const handleNameChange = (event) => {
     setName(event.target.value);
   };

@@ -54,7 +54,7 @@ const Navbar = ({ location }) => {
             Connect
           </Link>
           <Link to="/profile" data-cy="profile">
-            Profile
+           Profile
           </Link>
           <Link to="/" data-cy="logout" onClick={IsLoggedOut}>
             Sign Out

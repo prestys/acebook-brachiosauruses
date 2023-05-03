@@ -17,11 +17,16 @@ const LogInForm = ({ navigate }) => {
     })
 
     if(response.status !== 201) {
+      setEmail('')
+      setPassword('')
       navigate('/login')
     } else {
       let data = await response.json()
       window.localStorage.setItem("token", data.token,)
       window.localStorage.setItem("userID", data.userID,)
+      window.localStorage.setItem("userFriends", data.userFriends.join(','))
+
+
       navigate('/posts');
     }
   }

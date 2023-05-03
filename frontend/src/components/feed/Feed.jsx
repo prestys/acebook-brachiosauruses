@@ -44,13 +44,15 @@ const Feed = ({ navigate }) => {
               token={token}
               setToken={setToken}
               userID = {userID}
+              navigate={navigate}
+
             />
           ))}
         </div>
       </section>
     );
   } else {
-    navigate("/signin");
+    navigate("/login");
   }
 };
 

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Post.css";
+import { useNavigate } from "react-router";
 const moment = require("moment");
 
 const Post = (props) => {
-  const { post, token, setToken, userID} = props;
+  const { post, token, setToken} = props;
   const [deletedPost, setDeletedPost] = useState(false);
   const currentUser = window.localStorage.getItem("userID");
   const createdBy = post.author.id
+  const navigate = useNavigate()
 
 
 
@@ -29,6 +31,23 @@ const Post = (props) => {
     }
   };
 
+  const fetchUserProfile = async () => {
+    fetch(`/api/users/${createdBy}`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then(async (data) => {
+        window.localStorage.setItem("username", data.user.name)
+        window.localStorage.setItem("image", data.user.imageURL)
+        window.localStorage.setItem("otherUserID", createdBy)
+      }).then((data)=>
+      {
+        navigate("/profile")});
+      
+  }
+
   const displayPost = (deletedPost) => {
     if (deletedPost === false)
       return (
@@ -36,7 +55,8 @@ const Post = (props) => {
           <h4 className="post-timestamp">
             {moment(post.createdAt).calendar()}
           </h4>
-          <p data-cy="authorID">Author ID -- {createdBy}</p>
+          <p onClick={fetchUserProfile} data-cy="authorID">Author ID -- {createdBy}</p>
+
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
           {createdBy == currentUser ?

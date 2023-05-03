@@ -23,8 +23,11 @@ const LogInForm = ({ navigate }) => {
       navigate('/login')
     } else {
       let data = await response.json()
+      console.log(data);
       window.localStorage.setItem("token", data.token,)
       window.localStorage.setItem("userID", data.userID,)
+      window.localStorage.setItem("currentUsername", data.username,)
+      window.localStorage.setItem("userImgURL", data.userImgURL,)
       window.localStorage.setItem("userFriends", data.userFriends.join(','))
 
 

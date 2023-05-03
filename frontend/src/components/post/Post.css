@@ -10,11 +10,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 2vh;
+  gap: 2rem;
 }
 
 .post-timestamp{
   color: #919193;
+  font-size: 1rem;
 }
 
 .post-message{
@@ -31,4 +32,38 @@
   color: #919193;
   cursor: pointer;
   padding: 0.25rem 0.5rem;
+}
+
+.post-user-info-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+.post-user-img-container {
+  width: 7.5rem;
+  height: 7.5rem;
+
+}
+
+.post-user-img {
+  border-radius: 16rem;
+  object-fit: cover;
+  width: 100%;
+  cursor: pointer;
+}
+
+.post-user-text-container {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: flex-start;
+   gap: 0.5rem;
+}
+
+.post-user-username {
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

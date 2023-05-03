@@ -7,6 +7,7 @@ const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [userID, setUserID] = useState(window.localStorage.getItem("userID"))
+  const username = window.localStorage.getItem("currentUsername");
 
   useEffect(() => {
     if (token) {
@@ -22,14 +23,13 @@ const Feed = ({ navigate }) => {
           setPosts(data.posts);
         });
     }
+    console.log(username);
   }, []);
-
-
 
   if (token) {
     return (
       <section className="feed">
-        <h2 className="feed-header">Hi {userID}, What's on your mind?</h2>
+        <h2 className="feed-header">Hi {username}, What's on your mind?</h2>
         <RouteButton
           navigate={navigate}
           routePath={"/posts/new"}
@@ -43,7 +43,7 @@ const Feed = ({ navigate }) => {
               key={post._id}
               token={token}
               setToken={setToken}
-              userID = {userID}
+              // userID = {userID}
               navigate={navigate}
             />
           ))}

@@ -45,7 +45,6 @@ const Feed = ({ navigate }) => {
               setToken={setToken}
               userID = {userID}
               navigate={navigate}
-
             />
           ))}
         </div>

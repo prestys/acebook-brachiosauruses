@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Post from "../post/Post";
+import "./OtherUserProfile.css";
 const OtherUserProfile = ({navigate}, props) => {
 
 
@@ -44,8 +45,10 @@ const OtherUserProfile = ({navigate}, props) => {
     <>
 
         <div className="profile-container">
-          <img src={window.localStorage.getItem("image")}/>
-          <h1>{window.localStorage.getItem("username")}</h1>
+          <div className="profile-img-container">
+        <img className="profile-img" src={window.localStorage.getItem("image")} />
+        </div>
+        <h1 className="profile-username">{window.localStorage.getItem("username")}</h1>
           {checkFriends()}
         </div>
 

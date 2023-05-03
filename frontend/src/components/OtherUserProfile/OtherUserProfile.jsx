@@ -1,11 +1,44 @@
-import React from "react";
-
-const OtherUserProfile = () => {
+import React, {useState, useEffect} from "react";
+import Post from "../post/Post";
+const OtherUserProfile = ({navigate}, props) => {
 
 
   const otherUser = window.localStorage.getItem("otherUserID");
+  const userID = window.localStorage.getItem("userID");
   const friendsList = window.localStorage.getItem("userFriends").split(',');
+  const [posts, setPosts] = useState([]);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [otherUserID, setOtherUserID] = useState(window.localStorage.getItem("otherUserID"))
+  const post = props;
+  const proFeed = [];
 
+  const checkFriends = () => {
+    if (otherUser === userID){
+      return null
+    }
+    else if (friendsList.includes(otherUser)) {
+      return <button>They are friends.</button>
+    }
+    else {
+      return <button>They are not friends.</button>
+    }
+  }
+
+  useEffect(() => {
+    if (token) {
+      fetch("/api/posts", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((response) => response.json())
+        .then(async (data) => {
+          window.localStorage.setItem("token", data.token);
+          setToken(window.localStorage.getItem("token"));
+          setPosts(data.posts);
+        });
+  }
+}, []);
 
   return (
     <>
@@ -13,18 +46,36 @@ const OtherUserProfile = () => {
         <div className="profile-container">
           <img src={window.localStorage.getItem("image")}/>
           <h1>{window.localStorage.getItem("username")}</h1>
-          {friendsList.includes(otherUser) ? 
-            <button>They are friends</button>
-           : <button>They are not friends</button>
-          }
-
-          {/* window.localStorage.getItem("friends").split(',').each(friend) => if userprofile ID is in friends array */}
+          {checkFriends()}
         </div>
-      {/* if other userprofile.id is in current user friends array display unfriend + link to friends
-      otherwise display add friend button */}
-      {/* display feed of posts where post author id matches userprofile.id */}
+
+        <div className="profile-feed-container">
+          {posts.forEach(post => {
+            if (post.author.id === otherUserID){
+              proFeed.push(post)
+            } else {
+              console.log(false)
+            }
+          })}
+        </div>
+
+        <section className="feed">
+
+          <div id="feed" role="feed" className="feed-posts">
+            {proFeed.map((post) => (
+              <Post
+                post={post}
+                key={post._id}
+                token={token}
+                setToken={setToken}
+                userID = {userID}
+                navigate={navigate}
+              />
+            ))}
+          </div>
+        </section>
     </>
   );
-};
+}
 
 export default OtherUserProfile;

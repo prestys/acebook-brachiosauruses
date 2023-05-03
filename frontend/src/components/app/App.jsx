@@ -7,13 +7,17 @@ import FriendList from "../friendList/FriendList";
 import Signout from "../signout/Signout";
 import Feed from "../feed/Feed";
 import NewPost from "../newPost/NewPost";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../navbar/Navbar";
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
 
 const App = () => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
+  const [posts, setPosts] = useState([]);
+  const [token, setToken] = useState(window.localStorage.getItem("token"));
+  const [userID, setUserID] = useState(window.localStorage.getItem("userID"))
+
   return (
     <>
       <section className="nav">

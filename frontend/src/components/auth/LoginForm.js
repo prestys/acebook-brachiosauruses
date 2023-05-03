@@ -26,7 +26,7 @@ const LogInForm = ({ navigate }) => {
       console.log(data);
       window.localStorage.setItem("token", data.token,)
       window.localStorage.setItem("userID", data.userID,)
-      window.localStorage.setItem("username", data.username,)
+      window.localStorage.setItem("currentUsername", data.username,)
       window.localStorage.setItem("userImgURL", data.userImgURL,)
       window.localStorage.setItem("userFriends", data.userFriends.join(','))
 

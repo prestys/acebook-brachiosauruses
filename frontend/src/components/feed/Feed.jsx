@@ -7,7 +7,7 @@ const Feed = ({ navigate }) => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token"));
   const [userID, setUserID] = useState(window.localStorage.getItem("userID"))
-  const username = window.localStorage.getItem("username");
+  const username = window.localStorage.getItem("currentUsername");
 
   useEffect(() => {
     if (token) {

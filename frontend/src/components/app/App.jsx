@@ -7,7 +7,7 @@ import FriendList from "../friendList/FriendList";
 import Signout from "../signout/Signout";
 import Feed from "../feed/Feed";
 import NewPost from "../newPost/NewPost";
-import Navbar from "../navbar/Navbar";
+import Navbar from "../Navbar/Navbar";
 import React, { useState } from "react";
 import { useNavigate, Routes, Route, useLocation } from "react-router-dom";
 

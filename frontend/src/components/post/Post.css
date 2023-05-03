@@ -1,28 +1,28 @@
-.post{
-  background: #F8FBFF;
+.post {
+  background: #f8fbff;
   box-shadow: 3px 4px 5px 4px rgba(145, 145, 147, 0.57);
   border-radius: 16px;
   padding: 2rem;
   width: 100%;
 }
 
-.post-container{
+.post-container {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 2rem;
 }
 
-.post-timestamp{
+.post-timestamp {
   color: #919193;
   font-size: 1rem;
 }
 
-.post-message{
+.post-message {
   text-align: left;
 }
 
-.border-separator{
+.border-separator {
   width: 100%;
   border: solid 1px;
   border-bottom: #373737;
@@ -43,7 +43,6 @@
 .post-user-img-container {
   width: 7.5rem;
   height: 7.5rem;
-
 }
 
 .post-user-img {
@@ -54,16 +53,16 @@
 }
 
 .post-user-text-container {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: flex-start;
-   gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
 .post-user-username {
-    text-transform: uppercase;
-    font-weight: bolder;
-    font-size: 1.5rem;
-    cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  cursor: pointer;
 }

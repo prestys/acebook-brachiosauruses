@@ -41,7 +41,7 @@ const Post = (props) => {
         window.localStorage.setItem("username", data.user.name)
         window.localStorage.setItem("image", data.user.imageURL)
         window.localStorage.setItem("otherUserID", createdBy)
-      }).then((data)=>
+      }).then(() =>
       {
         navigate("/profile")});
       

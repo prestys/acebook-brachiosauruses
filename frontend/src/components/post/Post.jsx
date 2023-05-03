@@ -65,13 +65,22 @@ const Post = (props) => {
     if (deletedPost === false)
       return (
         <div className="post-container">
-          <h4 className="post-timestamp">
-            {moment(post.createdAt).calendar()}
-          </h4>
-          <p onClick={fetchUserProfile} data-cy="authorID">
-            {postUsername}
-          </p>
-          <img src={postImgURL} alt="" />
+          <div className="post-user-info-container">
+            <div className="post-user-img-container">
+            <img src={postImgURL} alt="" className="post-user-img" onClick={fetchUserProfile}/>
+            </div>
+            <div className="post-user-text-container">
+              <p
+                onClick={fetchUserProfile}
+                data-cy="authorID"
+                className="post-user-username">
+                {postUsername}
+              </p>
+              <h4 className="post-timestamp">
+                {moment(post.createdAt).calendar()}
+              </h4>
+            </div>
+          </div>
           <p className="post-message">{post.message}</p>
           <div className="border-separator"></div>
           {createdBy == currentUser ? (

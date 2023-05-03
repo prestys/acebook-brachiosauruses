@@ -3,7 +3,7 @@ const router = express.Router();
 
 const usersController = require("../controllers/users");
 
-router.post("/", UsersController.Create);
-router.get("/:userID", UsersController.Index);
+router.post("/", usersController.Create);
+router.get("/:userID", usersController.Index);
 
 module.exports = router;

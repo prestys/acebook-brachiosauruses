@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "./Post.css";
 import { useNavigate } from "react-router";
 const moment = require("moment");
 

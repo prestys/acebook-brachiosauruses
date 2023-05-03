@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styles from "./LoginForm.css";
+import SubmitButton from '../submitButton/SubmitButton';
 
 const LogInForm = ({ navigate }) => {
   const [email, setEmail] = useState("");
@@ -42,11 +43,11 @@ const LogInForm = ({ navigate }) => {
 
     return (
       <section className="login">
-        <form onSubmit={handleSubmit}>
+        <form  id="login-form" className="login-form" onSubmit={handleSubmit}>
           <input placeholder='Email' id="email" type='text' value={ email } onChange={handleEmailChange} />
           <input placeholder='Password' id="password" type='password' value={ password } onChange={handlePasswordChange} />
-          <input role='submit-button' id='submit' type="submit" value="Submit" />
         </form>
+        <SubmitButton form='login-form' id='login-form-button' text='Log In' />
       </section>
     );
 }

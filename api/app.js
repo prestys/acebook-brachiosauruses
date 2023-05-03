@@ -3,34 +3,33 @@ const express = require("express");
 const path = require("path");
 const logger = require("morgan");
 const JWT = require("jsonwebtoken");
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
+const parser = require("body-parser");
 
 const postsRouter = require("./routes/posts");
 const tokensRouter = require("./routes/tokens");
 const usersRouter = require("./routes/users");
+const imagesRouter = require("./routes/images");
 
 const app = express();
 
-// setup for receiving JSON
-app.use(express.json())
-
 app.use(logger("dev"));
-app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // middleware function to check for valid tokens
 const tokenChecker = (req, res, next) => {
-
   let token;
-  const authHeader = req.get("Authorization")
+  const authHeader = req.get("Authorization");
 
-  if(authHeader) {
-    token = authHeader.slice(7)
+  if (authHeader) {
+    token = authHeader.slice(7);
   }
 
   JWT.verify(token, process.env.JWT_SECRET, (err, payload) => {
-    if(err) {
-      console.log(err)
-      res.status(401).json({message: "auth error"});
+    if (err) {
+      console.log(err);
+      res.status(401).json({ message: "auth error" });
     } else {
       req.user_id = payload.user_id;
       next();
@@ -39,9 +38,10 @@ const tokenChecker = (req, res, next) => {
 };
 
 // route setup
-app.use("/posts", tokenChecker, postsRouter);
-app.use("/tokens", tokensRouter);
-app.use("/users", usersRouter);
+app.use("/posts", parser.json(), tokenChecker, postsRouter);
+app.use("/tokens", parser.json(), tokensRouter);
+app.use("/users", parser.json(), usersRouter);
+app.use("/images", upload.single("file"), imagesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -55,7 +55,7 @@ app.use((err, req, res) => {
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
   // respond with details of the error
-  res.status(err.status || 500).json({message: 'server error'})
+  res.status(err.status || 500).json({ message: "server error" });
 });
 
 module.exports = app;
